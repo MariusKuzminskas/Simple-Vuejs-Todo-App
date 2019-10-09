@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+		<title>Document</title>
+	</head>
+	<style>
+		.checkedItem {
+			text-decoration: line-through;
+			color: rgb(128, 128, 128);
+		}
+	</style>
+	<body>
+		<div id="app">
+			<div class="container">
+				<div class="jumbotron text-center">
+					<h1 class="display-4">Vue To DO APP!</h1>
+					<p class="lead">
+						This is how simple it is to To Do
+					</p>
+					<hr class="my-4" />
+					<div class="row">
+						<div class="col-lg-4 col-sm-6 mx-auto">
+							<label>Add new To Do here</label>
+							<input
+								v-model="todo"
+								class="form-control mb-3"
+								type="text"
+								v-on:keyup.enter="addToDoHandler(todo)"
+							/>
+
+							<ul class="list-group">
+								<div
+									v-for="(item, index) in todosArr"
+									class=" text-left alert alert-info alert-dismissible fade show"
+									role="alert"
+								>
+									<span
+										v-bind:class="{checkedItem: item.checked}"
+									>
+										<input
+											v-on:change="selected(index)"
+											type="checkbox"
+											class="mr-1"
+										/>
+										{{ item.text }}
+									</span>
+
+									<button
+										v-on:click="deleteMe(index)"
+										type="button"
+										class="close"
+										data-dismiss="alert"
+										aria-label="Close"
+									>
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="./script.js"></script>
+	</body>
+</html>
